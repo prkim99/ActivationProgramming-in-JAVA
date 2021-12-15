@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.ac.inha.mapper.MemberMapper">
+	<select id="loginMember" parameterType="String" resultType="String">
+		SELECT `PW` FROM `final_member`
+		WHERE ID = #{value}
+	</select>
+	
+	<insert id="regitMember" parameterType="hashMap">
+	INSERT INTO `final_member` (`ID`, `PW`, `NICKNAME`, `NAME`, `MAIL`, `HELLO`) 
+	VALUES (#{id}, #{pw}, #{nickname}, #{name}, #{mail}, #{hello})
+	</insert>
+	
+	<select id="infoMember" parameterType="String" resultType="map">
+		SELECT * FROM `final_member`
+		WHERE ID = #{value}
+	</select>
+	<update id="updateMember" parameterType="hashMap">
+	UPDATE `final_member`
+	SET ID= #{id}, PW = #{pw}, NICKNAME= #{nickname}, NAME= #{name}, MAIL= #{mail}, HELLO= #{hello}
+	WHERE ID = #{id_past}
+	</update>
+	<delete id="delete" parameterType="String">
+	DELETE FROM `final_member`
+	WHERE ID = #{value}
+	</delete>
+</mapper>
